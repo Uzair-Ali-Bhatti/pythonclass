@@ -4,6 +4,7 @@
 #exet program
 # append_example.py
 
+FILENAME = "task.txt"
 def menu():
     print("=========================")
     print("Please Select one option")
@@ -17,9 +18,13 @@ tasks = []
 
 def add_task(task):
     task = input("Enter a new task: ")
+    with open(FILENAME, "a") as f:
+        f.write(tasks + "\n")
     tasks.append(task)
 
 def show_tasks():
+    with open(FILENAME, "a") as f:
+        tasks = f.read()
     if tasks:
         for i, t in enumerate(tasks, start=1):
             print(i, t)
